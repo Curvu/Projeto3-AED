@@ -40,7 +40,7 @@ printf("DIM_BD: %d\n", dim);
 printf("TIME: %f\n", time);
 ```
 
-This will print the time it takes to sort the data. You can also print that time to a file by adding
+This will print the time it takes to sort the data. You can also print that time to a file by doing:
 ```bash
 ./main < inputs.txt > output.txt
 ```
