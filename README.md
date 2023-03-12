@@ -48,7 +48,7 @@ This will print the time it takes to sort the data. You can also print that time
 ## Input Generation
 This program generates random data using four functions:
 
-generate_matricula(): Generates a random matricula consisting of 6 characters, including uppercase letters and digits.
+* generate_matricula(): Generates a random matricula consisting of 6 characters, including uppercase letters and digits.
 * generate_infracao(): Generates a random infracao from a list of 5 possible infracoes.
 * generate_num(): Generates a random num from 1-5.
 * generate_name(): Generates a random name from a list of 5 possible names.
