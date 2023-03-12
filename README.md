@@ -3,13 +3,11 @@ This C program generates random data for a fictional database. The data includes
 
 ## Usage
 To use this program, simply compile the code and run it in your terminal with an argument that represents the number of entries you want to generate. For example, if you want to generate 10 entries, you would run:
-
 ```bash
 gcc gerador.c -o gerador && ./gerador 10 > inputs.txt
 ```
 
 The program will then output the random data in the following format:
-
 ```bash
 DIM_BD [number of entries]
 [matricula] [infracao] [num] [name]
@@ -19,28 +17,29 @@ DIM_BD [number of entries]
 TCHAU
 ```
 
-Then, you can use the output file to test your database program like so:
-
+#### Use the output file to test the program:
 ```bash
 gcc main.c -o main && ./main < inputs.txt
 ```
+<sup><sub>* Note that you can do the exact same thing with [Java](https://stackoverflow.com/a/23886542), [C++](https://faculty.cs.niu.edu/~mcmahon/CS241/Notes/Unix_Reference/io_redirection.html) and [Python](https://medium.com/@scinopio/redirecting-standard-input-output-to-a-file-in-python-8febde5303d9)</sub></sup>
 
+#### Calculate time needed to run the sorting algorithm:
 You can also add some lines of code to the program to print the time it takes to sort the data. To do this:
 ```c
 #include <time.h>
-```
-Then, add the following lines of code to the main function:
-```c
+[...]
+// Add this in the same place where the sort was being called !!
 clock_t start = clock();
-// call your sorting function here
+SORT(ARGUMENT) // call your sorting function here
 clock_t end = clock();
 double time = (double) (end - start) / CLOCKS_PER_SEC;
 printf("SORT NAME\n");
 printf("DIM_BD: %d\n", dim);
 printf("TIME: %f\n", time);
+[...]
 ```
 
-This will print the time it takes to sort the data. You can also print that time to a file by doing:
+#### Output of the program to an file:
 ```bash
 ./main < inputs.txt > output.txt
 ```
