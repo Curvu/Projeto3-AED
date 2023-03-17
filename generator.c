@@ -7,6 +7,13 @@
 #define OUTPUT "output.txt"
 #define MAX 100
 
+// detect if is linux or windows
+#ifdef _WIN32
+    #define OS 0
+#else
+    #define OS 1
+#endif
+
 // generate a random_matricula : A-Z, 0-9, 6 characters
 char *generate_matricula() {
     char *chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -34,8 +41,15 @@ char *generate_infracao() {
 }
 
 void sortFile(int dim, int flag) {
-    system("./main 0 1 < inp.txt > out.txt"); // 0 = without time, 1 = merge sort
-    system("exec 1>&-"); // stop printing to out.txt
+    char command[100];
+    if (OS) { // linux
+        sprintf(command, "./main 0 1 < %s > %s", INPUT, OUTPUT);
+        system(command); // 0 = without time, 1 = merge sort
+        system("exec 1>&-"); // stop printing to out.txt
+    } else { // windows
+        sprintf(command, "Get-Content %s | ./main 0 1 > %s", INPUT, OUTPUT); // 0 = without time, 1 = merge sort
+        system(command);
+    }
     FILE *fp = fopen(INPUT, "w");
     FILE *fp2 = fopen(OUTPUT, "r");
     // ignore first and last line
@@ -72,8 +86,16 @@ int main(int argc, char** argv) { // ./gerar <dim> <flag {0 = random, 1 = sorted
     } else if (flag == 2) { // decrescente
         sortFile(dim, 1);
 
-        system("./main 0 3 < inp.txt > out.txt"); // 0 = without time, 3 = reverse
-        system("exec 1>&-"); // stop printing to out.txt
+        char command[100];
+        if (OS) { // linux
+            sprintf(command, "./main 0 3 < %s > %s", INPUT, OUTPUT);
+            system(command); // 0 = without time, 3 = reverse
+            system("exec 1>&-"); // stop printing to out.txt
+        } else { // windows
+            sprintf(command, "Get-Content %s | ./main 0 3 > %s", INPUT, OUTPUT);
+            system(command); // 0 = without time, 3 = reverse
+        }
+
         FILE *fp = fopen(INPUT, "w");
         FILE *fp2 = fopen(OUTPUT, "r");
         // ignore first and last line
