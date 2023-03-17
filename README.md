@@ -2,11 +2,21 @@
 This C program generates random data for a fictional database. The data includes a matricula (a unique identifier), an infracao (an infraction type), a num (the severity of the infraction on a scale of 1-5), and a name (the name of the person who committed the infraction).
 
 ## Usage
-To use this program, simply compile the code and run it in your terminal with an argument that represents the number of entries you want to generate. For example, if you want to generate 10 entries, you would run:
+To use this program, compile the code and run it in your terminal with an argument representing the number of entries you want to generate and a flag indicating whether you want to generate the data in random, ascending or descending order. The syntax is as follows:
 ```bash
-gcc gerador.c -o gerador && ./gerador 10 > inputs.txt
+gcc generator.c -o generate && ./generate <dim> <flag>
+```
+### Flags:
+- 0: Random
+- 1: Ascending
+- 2: Descending
+
+#### Example to generate 10 random entries:
+```bash
+./generate 10 0
 ```
 
+#### The program will output the random data into a file called "inputs.txt" in the following format:
 The program will then output the random data in the following format:
 ```bash
 DIM_BD [number of entries]
@@ -17,14 +27,14 @@ DIM_BD [number of entries]
 TCHAU
 ```
 
-#### Use the output file to test the program:
+## Using the output file to test the program:
 ```bash
 gcc main.c -o main && ./main < inputs.txt
 ```
 <sup><sub>* Note that you can do the exact same thing with [Java](https://stackoverflow.com/a/23886542), [C++](https://faculty.cs.niu.edu/~mcmahon/CS241/Notes/Unix_Reference/io_redirection.html) and [Python](https://medium.com/@scinopio/redirecting-standard-input-output-to-a-file-in-python-8febde5303d9)</sub></sup>
 
 #### Calculate time needed to run the sorting algorithm:
-You can also add some lines of code to the program to print the time it takes to sort the data. To do this:
+You can need to add some lines of code to the program to print the time it takes to sort the data. To do this:
 ```c
 #include <time.h>
 [...]
