@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define INPUT "inp.txt"
-#define OUTPUT "out.txt"
+#define INPUT "input.txt"
+#define OUTPUT "output.txt"
 #define MAX 100
 
 // generate a random_matricula : A-Z, 0-9, 6 characters
